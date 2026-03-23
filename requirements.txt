@@ -1,8 +1,9 @@
-streamlit
+streamlit==1.31.0
 pandas
-numpy
+numpy<2.0.0
 scikit-learn
 joblib
-tensorflow-cpu
-torch --index-url https://download.pytorch.org/whl/cpu
+tensorflow-cpu==2.15.0
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.0
 transformers
