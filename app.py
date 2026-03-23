@@ -26,7 +26,7 @@ def load_all_models():
 r_tokenizer = AutoTokenizer.from_pretrained('./')
 r_model = AutoModelForSequenceClassification.from_pretrained('./')
     
-    return svm, tfidf, le, lstm_model, keras_tok, r_tokenizer, r_model
+return svm, tfidf, le, lstm_model, keras_tok, r_tokenizer, r_model
 
 # Initialize models
 svm, tfidf, le, lstm, k_tok, r_tok, r_mod = load_all_models()
