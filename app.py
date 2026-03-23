@@ -12,23 +12,23 @@ st.set_page_config(page_title="Placement Predictor AI", page_icon="🎓", layout
 # --- 2. LOAD MODELS (Cached for Speed) ---
 @st.cache_resource
 def load_all_models():
-    # Preprocessors
+    # Preprocessors (Indented 4 spaces)
     svm = joblib.load('svm_model.joblib')
     tfidf = joblib.load('tfidf_vectorizer.joblib')
     le = joblib.load('label_encoder.joblib')
     
-    # LSTM Deep Learning
+    # LSTM Deep Learning (Indented 4 spaces)
     lstm_model = tf.keras.models.load_model('lstm_model.h5')
     keras_tok = joblib.load('keras_tokenizer.joblib')
     
-    # RoBERTa Transformer
-
-r_tokenizer = AutoTokenizer.from_pretrained('./')
-r_model = AutoModelForSequenceClassification.from_pretrained('./')
+    # RoBERTa Transformer (Indented 4 spaces)
+    r_tokenizer = AutoTokenizer.from_pretrained('./')
+    r_model = AutoModelForSequenceClassification.from_pretrained('./')
     
-return svm, tfidf, le, lstm_model, keras_tok, r_tokenizer, r_model
+    # The return statement MUST be inside the function (Indented 4 spaces)
+    return svm, tfidf, le, lstm_model, keras_tok, r_tokenizer, r_model
 
-# Initialize models
+# Initialize models (Outside the function, at the left margin)
 svm, tfidf, le, lstm, k_tok, r_tok, r_mod = load_all_models()
 
 # --- 3. UI DESIGN ---
@@ -74,18 +74,16 @@ if st.button("Predict Placement Status", type="primary"):
     p_roberta /= p_roberta.sum() # Normalize
 
     # --- 5. ENSEMBLE WEIGHTING ---
-    # We use the weights we tuned: RoBERTa(50%), LSTM(30%), SVM(20%)
-    # Index 1 is typically 'Placed' / 'Positive'
+    # RoBERTa(50%), LSTM(30%), SVM(20%)
     final_prob = (p_svm[1] * 0.2) + (p_lstm[1] * 0.3) + (p_roberta[1] * 0.5)
 
     # --- 6. FINAL DECISION & OUTPUT ---
     st.subheader("Results Analysis")
     
-    # Hard Signal Rule: 3+ Backlogs is an automatic high risk
     if backlogs > 2:
         st.error("Prediction: NOT PLACED ❌")
         st.warning("Reason: High academic risk due to active backlogs.")
-    elif final_prob >= 0.40: # Our tuned threshold
+    elif final_prob >= 0.40: 
         st.success(f"Prediction: PLACED 🎉 (Confidence: {final_prob*100:.1f}%)")
         st.balloons()
     else:
