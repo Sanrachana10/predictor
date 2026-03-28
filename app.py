@@ -70,7 +70,7 @@ if st.button("Predict Placement Status", type="primary"):
     inputs = r_tok(input_text, return_tensors="pt", truncation=True, padding=True)
     with torch.no_grad():
         logits = r_mod(**inputs).logits
-        p_roberta = torch.softmax(logits, dim=1).detach().cpu().numpy()[0][:2]
+        p_roberta = torch.softmax(logits, dim=1)[0][:2].tolist()
     p_roberta /= p_roberta.sum() # Normalize
 
     # --- 5. ENSEMBLE WEIGHTING ---
