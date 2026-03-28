@@ -18,7 +18,7 @@ def load_all_models():
     le = joblib.load('label_encoder.joblib')
     
     # LSTM Deep Learning (Indented 4 spaces)
-    lstm_model = tf.keras.models.load_model('lstm_model.h5')
+    lstm_model = tf.keras.models.load_model('lstm_model.keras')
     keras_tok = joblib.load('keras_tokenizer.joblib')
     
     # RoBERTa Transformer (Indented 4 spaces)
