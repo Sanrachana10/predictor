@@ -22,8 +22,8 @@ def load_all_models():
     keras_tok = joblib.load('keras_tokenizer.joblib')
     
     # RoBERTa Transformer (Indented 4 spaces)
-    r_tokenizer = AutoTokenizer.from_pretrained('./')
-    r_model = AutoModelForSequenceClassification.from_pretrained('./')
+    r_tokenizer = AutoTokenizer.from_pretrained("Sanrachana/student-placement-roberta")
+    r_model = AutoModelForSequenceClassification.from_pretrained("Sanrachana/student-placement-roberta")
     
     # The return statement MUST be inside the function (Indented 4 spaces)
     return svm, tfidf, le, lstm_model, keras_tok, r_tokenizer, r_model
